@@ -1,9 +1,4 @@
-<!--
-  Este template loads for the 'tab.publicacao-detalhe' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
+
 <ion-view view-title="{{publicacao.nome}}">
   <ion-content>
 
@@ -15,14 +10,56 @@
       <p>
         {{publicacao.descricao}}
       </p>
+    
     </div>
+      <ul  ng-repeat="comentario in publicacao.comentarios">
+        <li id="litem">
+          <div class="row">
+            <div class="col col-98 triangle-border right">
+              <p >
+                {{comentario.comentario}} 
+              </p>
+            </div>
+            <div class="col col-2">
+              <div class="row item item-avatar">         
+                <img id="imgcoment" src="{{comentario.face}}">  
+              </div>
+              <div class="row">
+                <p id="nomecomentario">{{comentario.nome}}</p>     
+              </div>  
+              <div class="row">
+                <p id="datacomentario">{{comentario.data}}</p>
+              </div>               
+            </div>         
+          </div>  
+        </li>
+      </ul>
+ 
     <div class="list">
-      <label class="item item-input">
-        <textarea placeholder="Digite seu comentário"></textarea>
-      </label>
-      <button class="button button-full button-positive">
+      <div class="row">
+        <div class="col col-80">
+          <label class="item item-input">
+            <textarea id="comentario" placeholder="Digite seu comentário"></textarea> 
+           
+          </label>
+         
+        </div>
+        <div class="col col-20">
+          <div class="row bttsComent">
+            <div class="col col-5">
+              <button ng-click="cleanComent()" class="button button-assertive">
+                <i class="icon  ion-android-cancel"></i>
+              </button>
+            </div>
+          </div> 
+         </div>
+      </div>   
+       
+      <button id="bttcoment" class="  button button-block  button-assertive" ng-click="addComent()">
         Comentar
       </button>
-  </ion-content>
+       
     </div>
+  </ion-content>
+   
 </ion-view>

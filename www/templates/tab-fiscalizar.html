@@ -1,11 +1,10 @@
 <ion-view view-title="Fiscalizar">
-  <ion-content class="padding">
-    <div class="list list-inset">
-      <label class="item item-input">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Pesquisar">
-      </label>
-    </div>
+
+    <ion-content class="padding" on-swipe-right="goBack()" on-swipe-left="goForward()">
+      <ion-refresher
+      pulling-text="Puxe para atualizar..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
     <div class="list card" ng-repeat="publicacao in publicacoes">
 
       <div class="item item-avatar">
@@ -18,13 +17,19 @@
         <p>
           {{publicacao.descricao}}
         </p>
-        <p>
-          <a href="#/tab/fiscalizar" class="subdued">1 Apoiador</a>
-          <a href="#/tab/fiscalizar/{{publicacao.id}}" class="subdued">5 Comentários</a>
-          <a href="#/tab/fiscalizar" class="subdued">Divulgar</a>
-        </p>
       </div>
+      <div class="item row ">
+         <div class="col">
+           <a href="#/tab/fiscalizar" class=" button button-clean button-light" ng-click="updateApoio(publicacao.id)">{{publicacao.apoio}} Apoiar</a>
+         </div>
+         <div class="col">
+           <a href="#/tab/fiscalizar/{{publicacao.id}}" class=" button button-clean button-light">{{publicacao.nComentarios}} Comentários</a>
+         </div>
+         <div class="col">
+           <a href="#/tab/fiscalizar" class="  button button-clean button-light">Divulgar</a>
+         </div>
 
+      </div>
     </div>
   </ion-content>
 </ion-view>

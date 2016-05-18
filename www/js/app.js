@@ -5,15 +5,22 @@
 // o segundo parâmetro é uma matriz de 'requires'
 // 'starter.services' é encontrado em services.js
 // 'starter.controllers' é encontrado em controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'jett.ionic.filter.bar', 'ng-mfb'])
 
 .run(function($ionicPlatform) {
+ 
   $ionicPlatform.ready(function() {
+   
+    if( ionic.Platform.isAndroid()){
 
-  });
+  
+    }else{
+  //   alert("no android");
+   }
+   }); 
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicFilterBarConfigProvider) {
 
   // Ionic usa AngularUI Router que utiliza o conceito de states (estados)
   // Leia mais aqui: https://github.com/angular-ui/ui-router
@@ -31,6 +38,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Cada guia tem sua própria pilha de histórico de navegação:
 
   .state('tab.fiscalizar', {
+      cache:false,
     url: '/fiscalizar',
     views: {
       'tab-fiscalizar': {
@@ -40,6 +48,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
   .state('tab.fiscalizar-detalhe', {
+      cache:false,
     url: '/fiscalizar/:publicacaoId',
     views: {
       'tab-fiscalizar': {
@@ -50,6 +59,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.publicar', {
+      cache:false,
       url: '/publicar',
       views: {
         'tab-publicar': {
@@ -60,6 +70,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
   .state('tab.atividade', {
+      cache:false,
     url: '/atividade',
     views: {
       'tab-atividade': {
@@ -67,9 +78,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AtividadeCtrl'
       }
     }
-  });
+  })
+ .state('login', {
+    url: "/login",
+        templateUrl: "templates/login.html",
+         controller: 'LoginCtrl'
+      
+ });
 
   // se nenhum dos estados acima são correspondidos, use isso como o fallback
-  $urlRouterProvider.otherwise('/tab/publicar');
+  $urlRouterProvider.otherwise('/login');
 
 });

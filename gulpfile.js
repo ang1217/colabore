@@ -40,10 +40,10 @@ gulp.task('install', ['git-check'], function() {
 gulp.task('git-check', function(done) {
   if (!sh.which('git')) {
     console.log(
-      '  ' + gutil.colors.red('Git não está instalado.'),
-      '\n  GIT é necessário para baixar o Ionic.',
-      '\n  Download git aqui:', gutil.colors.cyan('http://git-scm.com/downloads') + '.',
-      '\n  Uma vez git está instalado, execute \'' + gutil.colors.cyan('gulp install') + '\' novamente.'
+      '  ' + gutil.colors.red('Git is not installed.'),
+      '\n  Git, the version control system, is required to download Ionic.',
+      '\n  Download git here:', gutil.colors.cyan('http://git-scm.com/downloads') + '.',
+      '\n  Once git is installed, run \'' + gutil.colors.cyan('gulp install') + '\' again.'
     );
     process.exit(1);
   }
